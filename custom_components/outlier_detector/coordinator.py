@@ -183,7 +183,12 @@ class OutlierDetectorCoordinator(
             max(values) - min(values)
         )
 
-        imbalance_percent = imbalance/ avg * 100
+        #imbalance_percent = imbalance/ avg * 100
+        imbalance_percent = (
+                imbalance / abs(avg) * 100
+                if avg != 0
+                else 0.0
+        )
         detected_outliers = []
 
         max_score = 0.0
@@ -430,7 +435,8 @@ class OutlierDetectorCoordinator(
         #
         activation_threshold = threshold
         release_threshold = max(0.0,threshold - hysteresis,)
-        new_state = self._previous_state
+        #new_state = self._previous_state
+        new_state = getattr(self, "_previous_state", False,)
 
         if not new_state:
             #
