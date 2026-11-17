@@ -476,4 +476,7 @@ class OutlierDetectorCoordinator(
             "outlier_entities": outlier_entities,
             "max_score": (max_score if max_score == float("inf")
                     else round(max_score, 2) ),
+            "hysteresis": hysteresis,
+            "activation_threshold": activation_threshold,
+            "release_threshold": release_threshold,
         }
