@@ -26,62 +26,33 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 
 
-def calculate_mad(
-    values: list[float],
-) -> tuple[float, float]:
+def calculate_mad(values: list[float],) -> tuple[float, float]:
     """
-    Returns:
-        median,
-        MAD
+    Returns: median, MAD
     """
 
     median_value = median(values)
-
     deviations = [
         abs(v - median_value)
         for v in values
     ]
-
     mad = median(deviations)
-
     return median_value, mad
 
 
-class OutlierDetectorCoordinator(
-    DataUpdateCoordinator,
-):
+class OutlierDetectorCoordinator(DataUpdateCoordinator,):
     """Shared coordinator."""
 
-    def __init__(
-        self,
-        hass: HomeAssistant,
-        config: dict,
-    ) -> None:
-
-        super().__init__(
-            hass,
-            logger=_LOGGER,
-            name="outlier_detector",
-        )
-
+    def __init__(self, hass: HomeAssistant, config: dict,) -> None:
+        super().__init__(hass, logger=_LOGGER, name="outlier_detector",)
         self._config = config
         self._previous_state = False
 
     async def _async_update_data(self) -> dict:
-
         entities = self._config[CONF_ENTITIES]
-
         method = self._config[CONF_METHOD]
-
-        threshold = float(
-            self._config[CONF_THRESHOLD]
-        )
-        hysteresis = float(
-            self._config.get(
-                CONF_HYSTERESIS,
-                0.0,
-            )
-        )
+        threshold = float(self._config[CONF_THRESHOLD])
+        hysteresis = float(self._config.get(CONF_HYSTERESIS, 0.0,))
 
         samples = []
         units = set()
@@ -89,36 +60,20 @@ class OutlierDetectorCoordinator(
         #
         # Collect valid values
         #
-
         for entity_id in entities:
-
-            state = self.hass.states.get(
-                entity_id
-            )
+            state = self.hass.states.get(entity_id)
 
             if state is None:
                 continue
-
-            if state.state in (
-                "unknown",
-                "unavailable",
-                "",
-                None,
-            ):
+            if state.state in ("unknown", "unavailable", "", None,):
                 continue
 
             try:
                 value = float(state.state)
-            except (
-                ValueError,
-                TypeError,
-            ):
+            except (ValueError, TypeError,):
                 continue
 
-            unit = state.attributes.get(
-                "unit_of_measurement"
-            )
-
+            unit = state.attributes.get("unit_of_measurement")
             if unit:
                 units.add(unit)
 
@@ -135,7 +90,6 @@ class OutlierDetectorCoordinator(
         #
 
         if len(samples) < 2:
-
             return {
                 "valid": False,
                 "reason": "not_enough_values",
@@ -149,7 +103,6 @@ class OutlierDetectorCoordinator(
         #
 
         if len(units) > 1:
-
             return {
                 "valid": False,
                 "reason": "mixed_units",
@@ -159,17 +112,12 @@ class OutlierDetectorCoordinator(
                 "outliers": [],
             }
 
-        values = [
-            sample["value"]
-            for sample in samples
-        ]
+        values = [sample["value"] for sample in samples]
 
         avg = mean(values)
-
         median_value, mad = (
             calculate_mad(values)
         )
-
         try:
             stddev = (
                 stdev(values)
@@ -179,67 +127,37 @@ class OutlierDetectorCoordinator(
         except Exception:
             stddev = 0.0
 
-        imbalance = (
-            max(values) - min(values)
-        )
+        imbalance = (max(values) - min(values))
 
         #imbalance_percent = imbalance/ avg * 100
-        imbalance_percent = (
-                imbalance / abs(avg) * 100
-                if avg != 0
-                else 0.0
-        )
+        imbalance_percent = (imbalance / abs(avg) * 100 if avg != 0 else 0.0)
         detected_outliers = []
-
         max_score = 0.0
+        
         #
         # ABSOLUTE
         #
 
         if method == METHOD_ABSOLUTE:
-
             for sample in samples:
-
-                deviation = abs(
-                    sample["value"]
-                    - avg
-                )
-
-                max_score = max(
-                    max_score,
-                    deviation,
-                )
+                deviation = abs(sample["value"]- avg)
+                max_score = max(max_score, deviation,)
                 
                 if deviation > threshold:
-
                     detected_outliers.append(
                         {
-                            "entity_id":
-                                sample[
-                                    "entity_id"
-                                ],
-                            "value":
-                                sample[
-                                    "value"
-                                ],
-                            "deviation":
-                                round(
-                                    deviation,
-                                    3,
-                                ),
+                            "entity_id": sample["entity_id"],
+                            "value": sample["value"],
+                            "deviation": round(deviation, 3,),
                         }
                     )
 
         #
         # PERCENTAGE
         #
-
         elif method == METHOD_PERCENTAGE:
-
             if avg != 0:
-
                 for sample in samples:
-
                     deviation_percent = (
                         abs(
                             sample["value"]
@@ -280,7 +198,6 @@ class OutlierDetectorCoordinator(
         #
         # At least 3 samples required
         #
-
         elif method == METHOD_SIGMA:
 
             if len(samples) < 3:
