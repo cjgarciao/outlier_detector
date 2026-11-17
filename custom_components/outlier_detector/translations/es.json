@@ -1,0 +1,52 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Detector de valores anómalos",
+        "description": "Cree un detector que identifique sensores cuyos valores se desvían significativamente del resto.",
+        "data": {
+          "name": "Nombre",
+          "entities": "Sensores",
+          "method": "Método de detección",
+          "threshold": "Umbral",
+		  "hysteresis": "Histéresis"
+        }
+      }
+    },
+    "error": {
+      "mixed_units": "Los sensores seleccionados utilizan unidades diferentes",
+      "not_enough_values": "Se necesitan al menos dos valores válidos",
+      "not_enough_samples": "Este método requiere al menos tres muestras validas"
+    },
+    "abort": {
+      "already_configured": "Este detector ya está configurado"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones del detector",
+        "description": "Modifique la configuración del detector.",
+        "data": {
+          "name": "Nombre",
+          "entities": "Sensores",
+          "method": "Método de detección",
+          "threshold": "Umbral",
+		  "hysteresis": "Histéresis"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "anomaly": {
+        "name": "Anomalía"
+      }
+    },
+    "sensor": {
+      "statistics": {
+        "name": "Estadísticas"
+      }
+    }
+  }
+}

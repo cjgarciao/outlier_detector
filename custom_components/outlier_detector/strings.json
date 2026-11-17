@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Outlier Detector",
+        "description": "Create an outlier detector from existing sensors.",
+        "data": {
+          "name": "Name",
+          "entities": "Sensors",
+          "method": "Detection method",
+          "threshold": "Threshold",
+  	      "hysteresis": "Hysteresis"
+
+        }
+      }
+    },
+    "error": {
+      "mixed_units": "Selected sensors use different units",
+      "not_enough_values": "At least two valid sensor values are required",
+      "not_enough_samples": "This method requires at least three valid samples"
+    },
+    "abort": {
+      "already_configured": "This detector is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Outlier Detector Options",
+        "description": "Modify detector settings.",
+        "data": {
+          "name": "Name",
+          "entities": "Sensors",
+          "method": "Detection method",
+          "threshold": "Threshold",
+		  "hysteresis": "Hysteresis"
+        }
+      }
+    }
+  }
+}

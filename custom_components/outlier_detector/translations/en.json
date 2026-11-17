@@ -1,0 +1,52 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Outlier Detector",
+        "description": "Create a detector that identifies sensors whose values significantly differ from the rest.",
+        "data": {
+          "name": "Name",
+          "entities": "Sensors",
+          "method": "Detection method",
+          "threshold": "Threshold",
+		  "hysteresis": "Hysteresis"
+        }
+      }
+    },
+    "error": {
+      "mixed_units": "The selected sensors use different units",
+      "not_enough_values": "At least two valid values are required",
+      "not_enough_samples": "This method requires at least three valid samples"
+    },
+    "abort": {
+      "already_configured": "This detector is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Detector Options",
+        "description": "Modify detector settings.",
+        "data": {
+          "name": "Name",
+          "entities": "Sensors",
+          "method": "Detection method",
+          "threshold": "Threshold",
+		  "hysteresis": "Hysteresis"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "anomaly": {
+        "name": "Anomaly"
+      }
+    },
+    "sensor": {
+      "statistics": {
+        "name": "Statistics"
+      }
+    }
+  }
+}
