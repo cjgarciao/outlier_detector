@@ -65,6 +65,7 @@ class OutlierDetectorCoordinator(
         )
 
         self._config = config
+        self._previous_state = False
 
     async def _async_update_data(self) -> dict:
 
