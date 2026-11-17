@@ -1,7 +1,7 @@
 # Outlier Detector for Home Assistant
 
 <p align="center">
-  <img src="logo.png" width="256">
+  <img src="logo.png" width="192">
 </p>
 
 A Home Assistant custom integration that detects anomalous sensors and environmental imbalances across multiple rooms.
