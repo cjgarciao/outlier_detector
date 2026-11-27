@@ -5,6 +5,7 @@
 </p>
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.comhacs/integration)
+[![GitHub Release](https://img.shields.io/github/release/cjgarciao/outlier_detector.svg)](https://github.com/cjgarciao/outlier_detector/releases)
 [![Validate with HACS](https://github.com/cjgarciao/outlier_detector/actions/workflows/hacs.yml/badge.svg)](https://github.com/cjgarciao/outlier_detector/actions/workflows/hacs.yml)
 [![Validate with hassfest](https://github.com/cjgarciao/outlier_detector/actions/workflows/hassfest.yml/badge.svg)](https://github.com/cjgarciao/outlier_detector/actions/workflows/hassfest.yml)
 
