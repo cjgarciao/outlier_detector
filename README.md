@@ -4,6 +4,10 @@
   <img src="logo.png" width="192">
 </p>
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.comhacs/integration)
+[![Validate with HACS](https://github.com/cjgarciao/outlier_detector/actions/workflows/hacs.yml/badge.svg)](https://github.com/cjgarciao/outlier_detector/actions/workflows/hacs.yml)
+[![Validate with hassfest](https://github.com/cjgarciao/outlier_detector/actions/workflows/hassfest.yml/badge.svg)](https://github.com/cjgarciao/outlier_detector/actions/workflows/hassfest.yml)
+
 A Home Assistant custom integration that detects anomalous sensors and environmental imbalances across multiple rooms.
 
 The integration can compare groups of sensors such as:
@@ -17,6 +21,7 @@ The integration can compare groups of sensors such as:
 
 and create a binary sensor that indicates whether a significant deviation or imbalance has been detected.
 
+> **Note:** This integration was designed and developed with the assistance of AI.
 ---
 
 ## Features
