@@ -1,7 +1,7 @@
 # Outlier Detector for Home Assistant
 
 <p align="center">
-  <img src="logo.png" width="192">
+  <img src="logo.png" width="150">
 </p>
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.comhacs/integration)
