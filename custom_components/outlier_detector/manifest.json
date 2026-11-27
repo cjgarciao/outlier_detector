@@ -1,7 +1,7 @@
 {
   "domain": "outlier_detector",
   "name": "Outlier Detector",
-  "codeowners": [@cjgarciao],
+  "codeowners": ["@cjgarciao"],
   "config_flow": true,
   "documentation": "https://github.com/cjgarciao/outlier_detector",
   "integration_type": "device",
