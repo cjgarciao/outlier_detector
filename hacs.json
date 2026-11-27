@@ -2,7 +2,6 @@
   "name": "Outlier Detector",
   "content_in_root": false,
   "country": "ES",
-  "domain": "outlier_detector",
   "homeassistant": "2025.1.0",
   "iot_class": "local_push",
   "render_readme": true
