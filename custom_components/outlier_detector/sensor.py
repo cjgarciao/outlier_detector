@@ -120,7 +120,7 @@ class OutlierStatisticsSensor(
             name=self._detector_name,
             manufacturer="Custom",
             model="Outlier Detector",
-            sw_version="1.1",
+            sw_version="1.3",
         )
 
     @property
